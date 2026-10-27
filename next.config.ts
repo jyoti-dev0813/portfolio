@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   cacheComponents: true,
+  transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
   partialPrefetching: true,
   turbopack: {
     rules: {

@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SHIVONIX
 
-## Getting Started
+Portfolio and digital studio site for Jyoti Agarwal. It runs locally with no API keys.
 
-First, run the development server:
+## Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start
+npm run lint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Edit content
 
-## Learn More
+- `src/config/site.ts` — email, phone, social links, availability, site URL
+- `src/data/skills.ts` — technologies and the daily / exploring labels
+- `src/data/projects.ts` — case studies, including Milieu Solar and Disruptive Doctors
+- `src/data/services.ts`, `src/data/timeline.ts`, `src/data/home.ts`
+- `public/images/jyoti-shivonix.png` — portrait
+- `public/resume/Jyoti-Agarwal-Resume.pdf` — replace the template before sharing it
 
-To learn more about Next.js, take a look at the following resources:
+The resume is a one-page template. Every line marked CONFIRM needs a real value. Regenerate the starter file with:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+node scripts/write-resume.mjs
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contact form
 
-## Deploy on Vercel
+By default, submit opens an email draft to contactjyotiiagarwal@gmail.com. The message is not delivered until that draft is sent.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To use the free [Web3Forms](https://web3forms.com) tier, create `.env.local`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+NEXT_PUBLIC_SITE_URL=https://your-domain.example
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_public_access_key
+```
+
+That key is a public form key, not a server secret. If the request fails, the form says so and does not pretend the message was sent.
+
+## Hosting
+
+The site is a static-friendly Next.js app and does not need a database.
+
+- **Cloudflare Pages** or **Netlify**: free tiers suitable for a personal or freelance site. Watch build minutes and bandwidth on the current plan.
+- **Vercel Hobby**: free for many personal projects. Check the current plan terms before using it for client work; commercial use has been restricted on the hobby tier.
+
+Set `NEXT_PUBLIC_SITE_URL` to the public origin so canonical URLs, the sitemap, and Open Graph resolve correctly. The local default is `http://localhost:3000`.
+
+## Notes
+
+Dark theme only. The 3D prism loads on desktop when WebGL is available and motion is allowed. Phones, reduced motion, and low-memory devices get the SVG prism.
