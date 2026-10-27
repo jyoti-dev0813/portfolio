@@ -16,9 +16,9 @@ function replyTo(input: string) {
   return match?.text ?? fallbackReply;
 }
 
-function createThread(): Thread {
+function createThread(id: string = crypto.randomUUID()): Thread {
   return {
-    id: crypto.randomUUID(),
+    id,
     title: "New chat",
     messages: [{ role: "demo", text: "Demo mode. Replies are scripted and stay in this browser. No model is connected." }],
   };
@@ -37,7 +37,7 @@ function parseThreads(raw: string | null): Thread[] | null {
 
 export default function AssistPage() {
   const raw = useBrowserJson(storageKey);
-  const starter = useMemo(() => [createThread()], []);
+  const starter = useMemo(() => [createThread("starter")], []);
   const stored = useMemo(() => parseThreads(raw), [raw]);
   const threads = stored ?? starter;
   const [picked, setPicked] = useState<string | null>(null);
